@@ -2,7 +2,7 @@ let users = {
     sarahedo: {
         id: 'sarahedo',
         name: 'Sarah Edo',
-        avatarURL: ,
+        avatarURL: 'https://pbs.twimg.com/profile_images/982796605425303552/phhp5grt_400x400.jpg',
         answers: {
             "8xf0y6ziyjabvozdd253nd": 'optionOne',
             "6ni6ok3ym7mf1p33lnez": 'optionOne',
@@ -14,7 +14,7 @@ let users = {
     tylermcginnis: {
         id: 'tylermcginnis',
         name: 'Tyler McGinnis',
-        avatarURL: ,
+        avatarURL: 'https://pbs.twimg.com/profile_images/803732106513743872/o-JoI9g7_400x400.jpg',
         answers: {
             "vthrdm985a262al8qx3do": 'optionOne',
             "xj352vofupe1dqz9emx13r": 'optionTwo',
@@ -24,7 +24,7 @@ let users = {
     johndoe: {
         id: 'johndoe',
         name: 'John Doe',
-        avatarURL: ,
+        avatarURL: 'https://pbs.twimg.com/profile_images/446356636710363136/OYIaJ1KK_400x400.png',
         answers: {
             "xj352vofupe1dqz9emx13r": 'optionOne',
             "vthrdm985a262al8qx3do": 'optionTwo',
@@ -115,23 +115,24 @@ let questions = {
     },
 }
 
-function generateUID () {
+function generateUID() {
     return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
 }
 
-export function _getUsers () {
+export function
+_getUsers() {
     return new Promise((res, rej) => {
         setTimeout(() => res({...users}), 1000)
     })
 }
 
-export function _getQuestions () {
+export function _getQuestions() {
     return new Promise((res, rej) => {
         setTimeout(() => res({...questions}), 1000)
     })
 }
 
-function formatQuestion ({ optionOneText, optionTwoText, author }) {
+function formatQuestion({optionOneText, optionTwoText, author}) {
     return {
         id: generateUID(),
         timestamp: Date.now(),
@@ -147,7 +148,7 @@ function formatQuestion ({ optionOneText, optionTwoText, author }) {
     }
 }
 
-export function _saveQuestion (question) {
+export function _saveQuestion(question) {
     return new Promise((res, rej) => {
         const authedUser = question.author;
         const formattedQuestion = formatQuestion(question);
@@ -171,7 +172,7 @@ export function _saveQuestion (question) {
     })
 }
 
-export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
+export function _saveQuestionAnswer({authedUser, qid, answer}) {
     return new Promise((res, rej) => {
         setTimeout(() => {
             users = {
