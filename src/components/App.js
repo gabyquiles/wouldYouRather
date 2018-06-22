@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {BrowserRouter as Router, Link, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import Dashboard from "./Dashboard";
@@ -11,12 +11,6 @@ class App extends Component {
         return (
             <Router>
                 <div>
-
-                    <ul>
-                        <li><Link to="/">Dashboard
-                        </Link></li>
-                        <li><Link to="/login">SignOut</Link></li>
-                    </ul>
                     {/*<Route path="/signout" />*/}
                     <Route path="/login" component={Login}/>
                     <PrivateRoute path="/" exact component={Dashboard}/>
