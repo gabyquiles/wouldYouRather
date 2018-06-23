@@ -1,18 +1,15 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import '../styles/Login.css'
-import {handleGetUsers} from "../actions/shared"
 import {Button} from 'reactstrap'
 import {authenticateUser} from "../actions/authentication"
 import {Redirect} from 'react-router-dom'
-import {isEmpty} from "../utils/helpers"
 
 class Login extends Component {
     state = {
         username: '',
         isLogged: false
     }
-
     handleSubmit = (e) => {
         e.preventDefault()
         const {username} = this.state
@@ -23,14 +20,9 @@ class Login extends Component {
             this.setState(() => ({isLogged: true}))
         }
     }
-
     handleChange = (e) => {
         const username = e.target.value
         this.setState(() => ({username}))
-    }
-
-    componentDidMount() {
-        this.props.dispatch(handleGetUsers())
     }
 
     render() {
@@ -38,7 +30,7 @@ class Login extends Component {
 
         const {isLogged} = this.state
 
-        if (isLogged === true) {
+        if (isLogged) {
             return <Redirect to={from}/>
         }
 
@@ -76,7 +68,7 @@ function mapStateToProps({users, authentication}) {
                 name: user.name
             })
         }),
-        isLogged: !isEmpty(authentication)
+        username: authentication.authedUser
     }
 }
 

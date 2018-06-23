@@ -12,8 +12,8 @@ const PrivateRoute = ({component: Component, isAuthenticated, ...rest}) => (
                 <Fragment>
 
                     <ul>
-                        <li><Link to="/">Dashboard
-                        </Link></li>
+                        <li><Link to="/">Dashboard</Link></li>
+                        <li><Link to="/poll">Dashboard</Link></li>
                         <li><Link to="/login">SignOut</Link></li>
                     </ul>
 
