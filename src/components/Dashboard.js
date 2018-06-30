@@ -1,27 +1,66 @@
 import React, {Component} from 'react'
+import {Nav, NavItem, NavLink, TabContent, TabPane} from 'reactstrap'
 import {connect} from 'react-redux'
-import Poll from './Poll'
+import Poll from './PollSummary'
+import classnames from 'classnames';
 
 class Dashboard extends Component {
+    state = {
+        activeTab: '1'
+    }
+
+    toggle(tab) {
+        if (this.state.activeTab !== tab) {
+            this.setState({
+                activeTab: tab
+            });
+        }
+    }
+
     render() {
         const {notAnsweredQIds, answeredQIds} = this.props
         return (
             <div>
-                Probando a ver si esto funciona
-                <h1>Funciono</h1>
-                <h2>Unanswered</h2>
-                <ul>
-                    {notAnsweredQIds.map((questionId) => (
-                        <li key={questionId}><Poll id={questionId}/></li>
-                    ))}
-                </ul>
+                <Nav tabs>
+                    <NavItem>
+                        <NavLink
+                            className={classnames({active: this.state.activeTab === '1'})}
+                            onClick={() => {
+                                this.toggle('1');
+                            }}
+                        >
+                            Unanswered
+                        </NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink
+                            className={classnames({active: this.state.activeTab === '2'})}
+                            onClick={() => {
+                                this.toggle('2');
+                            }}
+                        >
+                            Answered
+                        </NavLink>
+                    </NavItem>
 
-                <h2>Answered</h2>
-                <ul>
-                    {answeredQIds.map((questionId) => (
-                        <li key={questionId}><Poll id={questionId}/></li>
-                    ))}
-                </ul>
+                </Nav>
+                <TabContent activeTab={this.state.activeTab}>
+                    <TabPane tabId="1">
+
+                        <ul>
+                            {notAnsweredQIds.map((questionId) => (
+                                <li key={questionId}><Poll id={questionId}/></li>
+                            ))}
+                        </ul>
+                    </TabPane>
+                    <TabPane tabId="2">
+                        <ul>
+                            {answeredQIds.map((questionId) => (
+                                <li key={questionId}><Poll id={questionId}/></li>
+                            ))}
+                        </ul>
+                    </TabPane>
+                </TabContent>
             </div>
         )
     }

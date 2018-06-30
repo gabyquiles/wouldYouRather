@@ -1,7 +1,8 @@
 import React, {Fragment} from 'react'
-import {Link, Redirect, Route} from 'react-router-dom'
+import {Redirect, Route} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {isEmpty} from "../utils/helpers";
+import Nav from './Nav'
 
 
 const PrivateRoute = ({component: Component, isAuthenticated, ...rest}) => (
@@ -10,13 +11,7 @@ const PrivateRoute = ({component: Component, isAuthenticated, ...rest}) => (
             isAuthenticated
                 ?
                 <Fragment>
-
-                    <ul>
-                        <li><Link to="/">Dashboard</Link></li>
-                        <li><Link to="/poll">Dashboard</Link></li>
-                        <li><Link to="/login">SignOut</Link></li>
-                    </ul>
-
+                    <Nav/>
                     <Component {...props} />
                 </Fragment>
                 : <Redirect to={{

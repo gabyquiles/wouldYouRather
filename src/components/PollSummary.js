@@ -1,10 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
-class Poll extends Component {
+class PollSummary extends Component {
     render() {
         const {question} = this.props
-        console.log("Q", question)
         return (
             <div>
                 <span>{question.optionOne.text} or {question.optionTwo.text}</span>
@@ -22,4 +21,4 @@ function mapStateToProps({questions, authentication}, {id}) {
 
 }
 
-export default connect(mapStateToProps)(Poll)
+export default connect(mapStateToProps)(PollSummary)

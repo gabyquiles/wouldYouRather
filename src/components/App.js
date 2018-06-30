@@ -6,7 +6,6 @@ import Dashboard from "./Dashboard";
 import Login from './Login'
 import PrivateRoute from './PrivateRoute'
 import {connect} from 'react-redux'
-import Poll from './Poll'
 import {handleInitialData} from "../actions/shared";
 
 class App extends Component {
@@ -18,10 +17,8 @@ class App extends Component {
         return (
             <Router>
                 <div>
-                    {/*<Route path="/signout" />*/}
                     <Route path="/login" component={Login}/>
                     <PrivateRoute path="/" exact component={Dashboard}/>
-                    <PrivateRoute path="/poll" exact component={Poll}/>
                 </div>
             </Router>
         );
