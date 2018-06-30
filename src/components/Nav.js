@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
 import {Nav as BoostrapNav, Navbar, NavbarBrand, NavItem, NavLink} from 'reactstrap'
@@ -11,10 +12,13 @@ class Nav extends Component {
                 <NavbarBrand>{user.name}, Would You Rather...</NavbarBrand>
                 <BoostrapNav>
                     <NavItem>
-                        <NavLink href="/">Dashboard</NavLink>
+                        <NavLink tag={Link} to="/">Dashboard</NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink href="/login">Signout</NavLink>
+                        <NavLink tag={Link} to="/questions/add">Add Question</NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink tag={Link} to="/login">Signout</NavLink>
                     </NavItem>
                 </BoostrapNav>
             </Navbar>
