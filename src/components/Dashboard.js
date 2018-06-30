@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import Poll from './Poll'
 
 class Dashboard extends Component {
     render() {
@@ -11,14 +12,14 @@ class Dashboard extends Component {
                 <h2>Unanswered</h2>
                 <ul>
                     {notAnsweredQIds.map((questionId) => (
-                        <li key={questionId}>{questionId}</li>
+                        <li key={questionId}><Poll id={questionId}/></li>
                     ))}
                 </ul>
 
                 <h2>Answered</h2>
                 <ul>
                     {answeredQIds.map((questionId) => (
-                        <li key={questionId}>{questionId}</li>
+                        <li key={questionId}><Poll id={questionId}/></li>
                     ))}
                 </ul>
             </div>
@@ -37,12 +38,11 @@ function mapStateToProps({questions, authentication}) {
         question.optionOne.votes.includes(user) || question.optionTwo.votes.includes(user)
     )
 
-
     return {
-        notAnsweredQIds: Object.keys(notAnsweredQuestions)
-            .sort((a, b) => notAnsweredQuestions[b].timestamp - notAnsweredQuestions[a].timestamp),
-        answeredQIds: Object.keys(answeredQuestions)
-            .sort((a, b) => answeredQuestions[b].timestamp - answeredQuestions[a].timestamp)
+        notAnsweredQIds: Object.values(notAnsweredQuestions)
+            .sort((a, b) => b.timestamp - a.timestamp).map((q) => q.id),
+        answeredQIds: Object.values(answeredQuestions)
+            .sort((a, b) => b.timestamp - a.timestamp).map((q) => q.id)
     }
 }
 
