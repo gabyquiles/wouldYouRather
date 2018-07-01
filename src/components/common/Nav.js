@@ -1,12 +1,33 @@
 import React, {Component} from 'react'
-import {NavLink} from 'react-router-dom'
+import {NavLink, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 
+
 import {Nav as BoostrapNav, Navbar, NavbarBrand, NavItem, NavLink as BootstrapNavLink} from 'reactstrap'
+import {signOut} from "../../actions/autheUser"
 
 class Nav extends Component {
+    state = {
+        redirectLogin: false
+    }
+
+
+    handleSignout = (e) => {
+        e.preventDefault()
+        this.props.dispatch(signOut())
+        this.setState(() => ({
+            redirectLogin: true
+        }))
+    }
+
     render() {
         const {user} = this.props
+        const {redirectLogin} = this.state
+
+        if (redirectLogin === true) {
+            return (<Redirect to="/login"/>)
+        }
+
         return (
             <Navbar color="light" light expand="md">
                 <NavbarBrand>{user.name}, Would You Rather...</NavbarBrand>
@@ -23,7 +44,7 @@ class Nav extends Component {
                             Question</BootstrapNavLink>
                     </NavItem>
                     <NavItem>
-                        <BootstrapNavLink tag={NavLink} to="/login">Signout</BootstrapNavLink>
+                        <BootstrapNavLink tag={NavLink} to="#" onClick={this.handleSignout}>Signout</BootstrapNavLink>
                     </NavItem>
                 </BoostrapNav>
             </Navbar>
@@ -31,10 +52,9 @@ class Nav extends Component {
     }
 }
 
-function mapStateToProps({authentication, users}) {
-    const username = authentication.authedUser
+function mapStateToProps({authedUser, users}) {
     return {
-        user: users[username]
+        user: users[authedUser]
     }
 }
 

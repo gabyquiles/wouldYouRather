@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import './Login.css'
 import {Button} from 'reactstrap'
-import {authenticateUser} from "../../actions/authentication"
+import {authenticateUser} from "../../actions/autheUser"
 import {Redirect} from 'react-router-dom'
 
 class Login extends Component {
@@ -60,7 +60,7 @@ class Login extends Component {
     }
 }
 
-function mapStateToProps({users, authentication}) {
+function mapStateToProps({users, authedUser}) {
     return {
         users: Object.values(users).map((user) => {
             return ({
@@ -68,7 +68,7 @@ function mapStateToProps({users, authentication}) {
                 name: user.name
             })
         }),
-        username: authentication.authedUser
+        username: authedUser
     }
 }
 

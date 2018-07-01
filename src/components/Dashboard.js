@@ -66,15 +66,13 @@ class Dashboard extends Component {
     }
 }
 
-function mapStateToProps({questions, authentication}) {
-    const user = authentication.authedUser
-
+function mapStateToProps({questions, authedUser}) {
 
     const notAnsweredQuestions = Object.values(questions).filter((question) =>
-        !question.optionOne.votes.includes(user) && !question.optionTwo.votes.includes(user))
+        !question.optionOne.votes.includes(authedUser) && !question.optionTwo.votes.includes(authedUser))
 
     const answeredQuestions = Object.values(questions).filter((question) =>
-        question.optionOne.votes.includes(user) || question.optionTwo.votes.includes(user)
+        question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser)
     )
 
     return {

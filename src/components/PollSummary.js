@@ -13,8 +13,7 @@ class PollSummary extends Component {
 
 }
 
-function mapStateToProps({questions, authentication}, {id}) {
-    const {authedUser} = authentication
+function mapStateToProps({questions}, {id}) {
     return {
         question: questions[id]
     }
