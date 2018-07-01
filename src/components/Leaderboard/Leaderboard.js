@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
-import LeaderboardEntry from './LeaderboardEntry'
+import UserSummary from '../common/UserSummary'
 
 class Leaderboard extends Component {
     render() {
@@ -10,7 +10,7 @@ class Leaderboard extends Component {
             <div>
                 <h1>Leaderboard</h1>
                 {users.map((userId) =>
-                    <LeaderboardEntry key={userId} id={userId}/>
+                    <UserSummary key={userId} id={userId}/>
                 )}
             </div>
         )

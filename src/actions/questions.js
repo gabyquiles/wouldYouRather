@@ -1,4 +1,5 @@
-import {saveQuestion} from "../utils/api"
+import {saveQuestion, saveQuestionAnswer} from "../utils/api"
+import {handleInitialData} from "./shared";
 
 export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS"
 export const ADD_QUESTION = "ADD_QUESTION"
@@ -28,4 +29,15 @@ export function handleAddQuestion(optionOneText, optionTwoText) {
         })
             .then((question) => dispatch(addQuestion(question)))
     }
+}
+
+export function handleAnswerQuestion(qid, answer) {
+    return (dispatch, getState) => {
+        const {authedUser} = getState()
+        return saveQuestionAnswer(authedUser, qid, answer)
+            .then((e) => {
+                dispatch(handleInitialData())
+            })
+    }
+
 }

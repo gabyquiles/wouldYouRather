@@ -32,4 +32,4 @@ class App extends Component {
 }
 
 export default connect()(App);
-//TODO: Question details
+//TODO: optimistic behavior

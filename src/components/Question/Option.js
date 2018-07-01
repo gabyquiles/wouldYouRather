@@ -1,30 +1,57 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import {Card, CardBody, CardSubtitle, CardTitle} from 'reactstrap'
 import './Option.css'
 
+
 class Option extends Component {
+    handleClick = (e) => {
+        e.preventDefault()
+        const {onClick, optionName} = this.props
+        onClick(optionName)
+    }
+
     render() {
-        const {option, totalVotes, isVoted, showResults} = this.props
+        const {option, showResults, isVoted, percentage} = this.props
+
         const {text, votes} = option
-        const numberVotes = votes.length
-        const percentage = Math.round((numberVotes / totalVotes) * 100)
         return (
-            <Card className={isVoted ? ("selected-option") : ''}>
-                <CardBody>
-                    <CardTitle>{text}</CardTitle>
-                    {showResults === true &&
-                    (<CardSubtitle>Numbero Of Votes: {numberVotes} ({percentage}%)</CardSubtitle>)
-                    }
-                </CardBody>
-            </Card>
+            showResults === false ?
+                <Link to="#" onClick={this.handleClick}>
+                    <Card className={isVoted ? ("selected-option") : ''}>
+                        <CardBody>
+                            <CardTitle>{text}</CardTitle>
+                            {showResults === true &&
+                            (<CardSubtitle>Numbero Of Votes: {votes.length} ({percentage}%)</CardSubtitle>)
+                            }
+                        </CardBody>
+                    </Card>
+                </Link>
+                :
+                <Card className={isVoted ? ("selected-option") : ''}>
+                    <CardBody>
+                        <CardTitle>{text}</CardTitle>
+                        {showResults === true &&
+                        (<CardSubtitle>Numbero Of Votes: {votes.length} ({percentage}%)</CardSubtitle>)
+                        }
+                    </CardBody>
+                </Card>
         )
     }
 }
 
-function mapStateToProps({authedUser}, {option}) {
+function mapStateToProps({authedUser, questions, users}, {questionId, optionName}) {
+    const question = questions[questionId]
+    const option = question[optionName]
+    const currentUser = users[authedUser]
+
     return {
-        isVoted: option.votes.includes(authedUser)
+        option,
+        isVoted: option.votes.includes(authedUser),
+        showResults: Object.keys(currentUser.answers).includes(questionId),
+        percentage: ((option.votes.length / (question.optionOne.votes.length + question.optionTwo.votes.length)) * 100).toFixed(2),
+        optionName
     }
 }
 

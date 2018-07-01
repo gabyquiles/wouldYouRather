@@ -1,19 +1,31 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Row} from 'reactstrap'
-import Option from "./Option";
+import {handleAnswerQuestion} from '../../actions/questions'
+import Option from "./Option"
+import UserSummary from '../common/UserSummary'
 
 class Question extends Component {
+    state = {
+        vote: false
+    }
+
+    handleVote = (vote) => {
+        const {dispatch, question} = this.props
+        dispatch(handleAnswerQuestion(question.id, vote))
+    }
+
     render() {
-        const {question, author, showResults} = this.props
-        const {optionOne, optionTwo} = question
-        const totalVotes = optionOne.votes.length + optionTwo.votes.length
+        const {question} = this.props
         return (
             <div>
                 <h1>Would you rather</h1>
                 <Row>
-                    <Option option={optionOne} totalVotes={totalVotes} showResults={showResults}/>
-                    <Option option={optionTwo} totalVotes={totalVotes} showResults={showResults}/>
+                    <UserSummary id={question.author}/>
+                </Row>
+                <Row>
+                    <Option questionId={question.id} optionName="optionOne" onClick={this.handleVote}/>
+                    <Option questionId={question.id} optionName="optionTwo" onClick={this.handleVote}/>
                 </Row>
             </div>
         )
@@ -24,11 +36,10 @@ function mapStateToProps({questions, users, authedUser}, props) {
     const {question_id} = props.match.params
     const question = questions[question_id]
     const user = users[authedUser]
-    const author = users[question.author]
 
     return {
         question,
-        author,
+        authedUser,
         showResults: Object.keys(user.answers).includes(question_id)
     }
 }

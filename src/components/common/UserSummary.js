@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import {Label, Media} from 'reactstrap'
 import {connect} from 'react-redux'
-import './LeaderboardEntry.css'
+import './UserSummary.css'
 
-class LeaderboardEntry extends Component {
+class UserSummary extends Component {
     render() {
         const {user} = this.props
         const numberOfAsked = user.questions.length
@@ -33,4 +33,4 @@ function mapStateToProps({users}, {id}) {
     }
 }
 
-export default connect(mapStateToProps)(LeaderboardEntry)
+export default connect(mapStateToProps)(UserSummary)
