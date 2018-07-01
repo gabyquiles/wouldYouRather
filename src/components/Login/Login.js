@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import '../styles/Login.css'
+import './Login.css'
 import {Button} from 'reactstrap'
-import {authenticateUser} from "../actions/authentication"
+import {authenticateUser} from "../../actions/authentication"
 import {Redirect} from 'react-router-dom'
 
 class Login extends Component {
