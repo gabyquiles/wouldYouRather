@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
-import {Link} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
 
-import {Nav as BoostrapNav, Navbar, NavbarBrand, NavItem, NavLink} from 'reactstrap'
+import {Nav as BoostrapNav, Navbar, NavbarBrand, NavItem, NavLink as BootstrapNavLink} from 'reactstrap'
 
 class Nav extends Component {
     render() {
@@ -12,16 +12,18 @@ class Nav extends Component {
                 <NavbarBrand>{user.name}, Would You Rather...</NavbarBrand>
                 <BoostrapNav>
                     <NavItem>
-                        <NavLink tag={Link} to="/">Dashboard</NavLink>
+                        <BootstrapNavLink tag={NavLink} exact to="/">Dashboard</BootstrapNavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink tag={Link} to="/leaderboard">Leaderboard</NavLink>
+                        <BootstrapNavLink tag={NavLink}
+                                          to="/leaderboard">Leaderboard</BootstrapNavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink tag={Link} to="/questions/add">Add Question</NavLink>
+                        <BootstrapNavLink tag={NavLink} to="/questions/add">Add
+                            Question</BootstrapNavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink tag={Link} to="/login">Signout</NavLink>
+                        <BootstrapNavLink tag={NavLink} to="/login">Signout</BootstrapNavLink>
                     </NavItem>
                 </BoostrapNav>
             </Navbar>
