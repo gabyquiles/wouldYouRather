@@ -7,8 +7,9 @@ import Login from './Login/Login'
 import PrivateRoute from './common/PrivateRoute'
 import NewQuestion from './NewQuestion'
 import {connect} from 'react-redux'
-import {handleInitialData} from "../actions/shared";
-import Leaderboard from "./Leaderboard/Leaderboard";
+import {handleInitialData} from "../actions/shared"
+import Leaderboard from "./Leaderboard/Leaderboard"
+import Question from './Question/Question'
 
 class App extends Component {
     componentDidMount() {
@@ -22,7 +23,8 @@ class App extends Component {
                     <Route path="/login" component={Login}/>
                     <PrivateRoute path="/" exact component={Dashboard}/>
                     <PrivateRoute path="/leaderboard" component={Leaderboard}/>
-                    <PrivateRoute path="/questions/add" component={NewQuestion}/>
+                    <PrivateRoute path="/add" component={NewQuestion}/>
+                    <PrivateRoute path="/questions/:question_id" component={Question}/>
                 </div>
             </Router>
         );

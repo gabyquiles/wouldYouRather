@@ -40,7 +40,7 @@ class Nav extends Component {
                                           to="/leaderboard">Leaderboard</BootstrapNavLink>
                     </NavItem>
                     <NavItem>
-                        <BootstrapNavLink tag={NavLink} to="/questions/add">Add
+                        <BootstrapNavLink tag={NavLink} to="/add">Add
                             Question</BootstrapNavLink>
                     </NavItem>
                     <NavItem>
