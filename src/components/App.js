@@ -10,6 +10,7 @@ import {connect} from 'react-redux'
 import {handleInitialData} from "../actions/shared"
 import Leaderboard from "./Leaderboard/Leaderboard"
 import Question from './Question/Question'
+import Registration from "./Registration/Registration";
 
 class App extends Component {
     componentDidMount() {
@@ -21,6 +22,7 @@ class App extends Component {
             <Router>
                 <div>
                     <Route path="/login" component={Login}/>
+                    <Route path="/register" component={Registration}/>
                     <PrivateRoute path="/" exact component={Dashboard}/>
                     <PrivateRoute path="/leaderboard" component={Leaderboard}/>
                     <PrivateRoute path="/add" component={NewQuestion}/>
