@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import './Login.css'
-import {Button} from 'reactstrap'
+import {Button, Form, FormGroup, Label} from 'reactstrap'
 import {authenticateUser} from "../../actions/autheUser"
-import {Redirect} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 
 class Login extends Component {
     state = {
@@ -36,26 +36,26 @@ class Login extends Component {
 
 
         return (
-            <div>
-                <form className="form-signin" onSubmit={this.handleSubmit}>
-                    <h2 className="form-heading">Please sign in</h2>
-                    <div className="form-group">
-                        <label htmlFor="username" className="sr-name">User</label>
-                        <select id="username" className="form-control"
-                                value={this.state.username}
-                                onChange={this.handleChange}>
-                            <option value='' disabled>Select</option>
-                            {this.props.users.map((user) => (
-                                    <option key={user.id} value={user.id}>{user.name}</option>
-                                )
-                            )}
-                        </select>
+            <Form onSubmit={this.handleSubmit} className="form-signin">
+                <h2 className="form-heading">Please sign in</h2>
+                <FormGroup>
+                    <Label htmlFor="username" className="sr-name">User</Label>
 
-                    </div>
-                    <Button type="submit" id="_submit" name="_submit"
-                            className="btn btn-lg btn-primary btn-block">Login</Button>
-                </form>
-            </div>
+                    <select id="username" className="form-control"
+                            value={this.state.username}
+                            onChange={this.handleChange}>
+                        <option value='' disabled>Select</option>
+                        {this.props.users.map((user) => (
+                                <option key={user.id} value={user.id}>{user.name}</option>
+                            )
+                        )}
+                    </select>
+
+                </FormGroup>
+                <Button type="submit" id="_submit" name="_submit"
+                        className="btn btn-lg btn-primary btn-block">Login</Button>
+                <Link to="/register">Sign Up</Link>
+            </Form>
         )
     }
 }
