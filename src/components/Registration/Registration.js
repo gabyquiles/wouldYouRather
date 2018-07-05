@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Button, Form, FormGroup, Input, Label} from 'reactstrap'
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 import {handleAddUser} from "../../actions/users"
 
 class Registration extends Component {
@@ -9,7 +9,8 @@ class Registration extends Component {
     state = {
         username: '',
         name: '',
-        avatarURL: ''
+        avatarURL: '',
+        isRegistered: false
     }
 
     handleSubmit = (e) => {
@@ -18,6 +19,7 @@ class Registration extends Component {
         const {dispatch} = this.props
 
         dispatch(handleAddUser(username, name, avatarURL))
+        this.setState({isRegistered: true})
     }
 
     handleChange = (e) => {
@@ -29,6 +31,15 @@ class Registration extends Component {
     }
 
     render() {
+        const {isRegistered} = this.state
+        console.log(isRegistered)
+        if (isRegistered) {
+            console.log(isRegistered)
+
+            console.log("Redirecting")
+            return <Redirect to="/login"/>
+        }
+
         return (
             <div>
 

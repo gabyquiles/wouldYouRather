@@ -35,6 +35,5 @@ class App extends Component {
 
 export default connect()(App);
 //TODO: optimistic behavior
-//TODO: Register new users
 //TODO: add loading bar
 //TODO: Show friendly message when page does not exist
