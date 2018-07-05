@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 
 
 import {Nav as BoostrapNav, Navbar, NavbarBrand, NavItem, NavLink as BootstrapNavLink} from 'reactstrap'
-import {signOut} from "../../actions/autheUser"
+import {signOut} from "../../actions/authedUser"
 
 class Nav extends Component {
     state = {

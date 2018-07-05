@@ -1,4 +1,4 @@
-import {AUTHENTICATE_USER, SIGN_OUT} from "../actions/autheUser";
+import {AUTHENTICATE_USER, SIGN_OUT} from "../actions/authedUser";
 
 export default function authedUser(state = {}, action) {
     switch (action.type) {
