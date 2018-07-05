@@ -1,3 +1,4 @@
+import {hideLoading, showLoading} from 'react-redux-loading'
 import {addUser} from "../utils/api"
 
 export const RECEIVE_USERS = "RECEIVE_USERS"
@@ -10,14 +11,16 @@ export function receiveUsers(users) {
 }
 
 export function handleAddUser(username, name, avatarURL) {
-    console.log(username)
     return (dispatch, getState) => {
-        console.log(username)
+        dispatch(showLoading())
         return addUser({
             username,
             name,
             avatarURL
         })
-            .then((users) => dispatch(receiveUsers(users)))
+            .then((users) => {
+                dispatch(receiveUsers(users))
+                dispatch(hideLoading())
+            })
     }
 }
