@@ -1,4 +1,5 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
+import LoadingBar from 'react-redux-loading'
 import {NavLink, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 
@@ -29,25 +30,29 @@ class Nav extends Component {
         }
 
         return (
-            <Navbar color="light" light expand="md">
-                <NavbarBrand>{user.name}, Would You Rather...</NavbarBrand>
-                <BoostrapNav>
-                    <NavItem>
-                        <BootstrapNavLink tag={NavLink} exact to="/">Dashboard</BootstrapNavLink>
-                    </NavItem>
-                    <NavItem>
-                        <BootstrapNavLink tag={NavLink}
-                                          to="/leaderboard">Leaderboard</BootstrapNavLink>
-                    </NavItem>
-                    <NavItem>
-                        <BootstrapNavLink tag={NavLink} to="/add">Add
-                            Question</BootstrapNavLink>
-                    </NavItem>
-                    <NavItem>
-                        <BootstrapNavLink tag={NavLink} to="#" onClick={this.handleSignout}>Signout</BootstrapNavLink>
-                    </NavItem>
-                </BoostrapNav>
-            </Navbar>
+            <Fragment>
+                <Navbar color="light" light expand="md">
+                    <NavbarBrand>{user.name}, Would You Rather...</NavbarBrand>
+                    <BoostrapNav>
+                        <NavItem>
+                            <BootstrapNavLink tag={NavLink} exact to="/">Dashboard</BootstrapNavLink>
+                        </NavItem>
+                        <NavItem>
+                            <BootstrapNavLink tag={NavLink}
+                                              to="/leaderboard">Leaderboard</BootstrapNavLink>
+                        </NavItem>
+                        <NavItem>
+                            <BootstrapNavLink tag={NavLink} to="/add">Add
+                                Question</BootstrapNavLink>
+                        </NavItem>
+                        <NavItem>
+                            <BootstrapNavLink tag={NavLink} to="#"
+                                              onClick={this.handleSignout}>Signout</BootstrapNavLink>
+                        </NavItem>
+                    </BoostrapNav>
+                </Navbar>
+                <LoadingBar/>
+            </Fragment>
         )
     }
 }
