@@ -42,11 +42,9 @@ class App extends Component {
 }
 
 function mapStateToProps({questions, users}) {
-    console.log("Q", questions)
     return {
         loading: isEmpty(questions) || isEmpty(users)
     }
-
 }
 
 export default connect(mapStateToProps)(App);

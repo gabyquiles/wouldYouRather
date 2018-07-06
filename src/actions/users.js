@@ -11,7 +11,7 @@ export function receiveUsers(users) {
 }
 
 export function handleAddUser(username, name, avatarURL) {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         dispatch(showLoading())
         return addUser({
             username,
