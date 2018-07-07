@@ -32,11 +32,7 @@ class Registration extends Component {
 
     render() {
         const {isRegistered} = this.state
-        console.log(isRegistered)
         if (isRegistered) {
-            console.log(isRegistered)
-
-            console.log("Redirecting")
             return <Redirect to="/login"/>
         }
 
