@@ -1,7 +1,7 @@
 import {hideLoading, showLoading} from 'react-redux-loading'
 import {addUser} from "../utils/api"
 
-export const RECEIVE_USERS = "RECEIVE_USERS"
+import {RECEIVE_USERS} from "./types";
 
 export function receiveUsers(users) {
     return {

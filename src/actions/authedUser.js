@@ -1,5 +1,4 @@
-export const AUTHENTICATE_USER = "AUTHENTICATE_USER"
-export const SIGN_OUT = "SIGN_OUT"
+import {AUTHENTICATE_USER, SIGN_OUT} from "./types";
 
 export function authenticateUser(id) {
     return {

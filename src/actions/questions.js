@@ -1,9 +1,8 @@
 import {hideLoading, showLoading} from 'react-redux-loading'
+import {ADD_QUESTION, RECEIVE_QUESTIONS} from "./types";
 import {saveQuestion, saveQuestionAnswer} from "../utils/api"
 import {handleInitialData} from "./shared";
 
-export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS"
-export const ADD_QUESTION = "ADD_QUESTION"
 
 export function receiveQuestions(questions) {
     return {
